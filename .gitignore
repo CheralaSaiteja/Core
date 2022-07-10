@@ -1,3 +1,6 @@
+build
+.vsocde
+.cache
 # Prerequisites
 *.d
 
