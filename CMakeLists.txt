@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(Core VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
+include(FetchContent)
+FetchContent_Declare(
+    glm
+    GIT_REPOSITORY https://github.com/g-truc/glm.git
+)
+FetchContent_MakeAvailable(glm)
 
-add_library(Core Core.cpp)
+add_library(Core glad.c Core.cpp)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+target_link_libraries(${PROJECT_NAME} PUBLIC glm)
+target_include_directories(${PROJECT_NAME} PUBLIC include/)
